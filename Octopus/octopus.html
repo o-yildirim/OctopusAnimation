@@ -1,0 +1,289 @@
+<html>
+<head>
+
+
+
+<script id="vertex-shader" type="x-shader/x-vertex">
+
+attribute  vec4 vPosition;
+attribute vec3 vColor;
+varying vec4 fColor;
+uniform mat4 modelViewMatrix;
+uniform mat4 projectionMatrix;
+
+void main() 
+{
+    gl_Position = projectionMatrix * modelViewMatrix * vPosition;
+    fColor = vec4(vColor,1.0);
+} 
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+
+precision mediump float;
+
+varying vec4 fColor;
+void main() 
+{
+  gl_FragColor = fColor;
+}
+</script>
+
+
+<style>
+  .canvas {
+     display:flex;
+     justify-content: space-between;
+  }
+
+  .sliders{
+    display: flex;
+    right: 0px;
+    flex-direction: row;
+  }
+
+  .buttons {
+    width: 400px;
+            padding: 20px;
+            position:absolute;
+            right:-150px;
+            top: 425px;
+        }
+      
+  .buttons_keyframes {
+    width: 400px;
+            padding: 20px;
+            position:absolute;
+            right:200px;
+            top: 450px;
+        }
+  
+
+</style>
+
+
+
+</head>
+
+<div id = "all" class = "canvas">
+<canvas id="gl-canvas" width="920" height="920">
+    Oops ... your browser doesn't support the HTML5 canvas element
+    </canvas>
+
+
+<div id = "sliders" class = "sliders">
+<div id="headSliders"> 
+<div id="sliderRotX">
+Head Rotation X<input id="slide" type="range"
+ min="-36*" max="360" step="10" value="90"
+  />
+ (-360,360)
+</div><br/>
+<div id="sliderRotY">
+  Head Rotation Y<input id="slide" type="range"
+   min="-36*" max="360" step="10" value="90"
+    />
+   (-360,360)
+  </div><br/>
+  <div id="sliderRotZ">
+    Head Rotation Z<input id="slide" type="range"
+     min="-36*" max="360" step="10" value="90"
+      />
+     (-360,360)
+    </div><br/>
+<div id="sliderHeadX">
+  Head pos X <input id="slide" type="range"
+   min="-10" max="10" step="0.1" value="0"
+    />
+  </div><br/>
+  <div id="sliderHeadY">
+    Head pos Y <input id="slide" type="range"
+    min="-10" max="10" step="0.1" value="0"
+      />
+    </div><br/>
+    <div id="sliderHeadZ">
+      Head pos Z <input id="slide" type="range"
+      min="-10" max="10" step="0.1" value="0"
+        />
+      </div><br/>
+</div>
+<div id = "UpperLegs" class="UpperLeg">
+<div id="slider1">
+UL1 <input id="slide" type="range"
+min="10" max="90" step="10" value="90"
+  />
+  (10,90)
+</div><br/>
+
+<div id="slider2">
+    UL2 <input id="slide" type="range"
+    min="10" max="90" step="10" value="90"
+  />
+  (10,90)
+</div><br/>
+<div id="slider3">
+    UL3 <input id="slide" type="range"
+    min="10" max="90" step="10" value="90"
+  />
+  (10,90)
+</div><br/>
+<div id="slider4">
+    UL4 <input id="slide" type="range"
+    min="10" max="90" step="10" value="90"
+  />
+  (10,90)
+</div><br/>
+<div id="slider5">
+    UL5 <input id="slide" type="range"
+    min="10" max="90" step="10" value="90"
+  />
+  (10,90)
+</div><br/>
+<div id="slider6">
+    UL6 <input id="slide" type="range"
+    min="10" max="90" step="10" value="90"
+  />
+  (10,90)
+</div><br/>
+<div id="slider7">
+    UL7 <input id="slide" type="range"
+    min="10" max="90" step="10" value="90"
+  />
+  (10,90)
+</div><br/>
+<div id="slider8">
+    UL8 <input id="slide" type="range"
+    min="10" max="90" step="10" value="90"
+  />
+  (10,90)
+</div><br/>
+</div>
+<div id ="MiddleLegs" class = "MiddleLeg">
+<div id="slider9">
+    ML1 <input id="slide" type="range"
+    min="-25" max="90" step="10" value="90"
+    />
+    (-25,90)
+</div><br/>
+
+<div id="slider10">
+    ML2<input id="slide" type="range"
+    min="-25" max="90" step="10" value="90"
+    />
+    (-25,90)
+    </div><br/>
+    
+    <div id="slider11">
+      ML3<input id="slide" type="range"
+      min="-25" max="90" step="10" value="90"
+      />
+      (-25,90)
+    </div><br/>
+    <div id="slider12">
+        ML4 <input id="slide" type="range"
+        min="-25" max="90" step="10" value="90"
+    />
+    (-25,90)
+    </div><br/>
+    <div id="slider13">
+        ML5 <input id="slide" type="range"
+        min="-25" max="90" step="10" value="90"
+    />
+    (-25,90)
+    </div><br/>
+    <div id="slider14">
+        ML6 <input id="slide" type="range"
+        min="-25" max="90" step="10" value="90"
+        />
+        (-25,90)
+    </div><br/>
+    <div id="slider15">
+        ML7 <input id="slide" type="range"
+        min="-25" max="90" step="10" value="90"
+    />
+    (-25,90)
+    </div><br/>
+    <div id="slider16">
+    ML8<input id="slide" type="range"
+    min="-25" max="90" step="10" value="90"
+    />
+    (-25,90)
+    </div><br/>
+  </div>
+    <div id = "LowerLegs" class = "LowerLeg">
+    <div id="slider17">
+        LL1 <input id="slide" type="range"
+        min="-45" max="90" step="10" value="90"
+      />
+      (-45,90)
+    </div><br/>
+    
+    <div id="slider18">
+        LL2 <input id="slide" type="range"
+        min="-45" max="90" step="10" value="90"
+        />
+        (-45,90)
+</div><br/>
+<div id="slider19">
+    LL3 <input id="slide" type="range"
+    min="-45" max="90" step="10" value="90"
+    />
+    (-45,90)
+</div><br/>
+<div id="slider20">
+    LL4 <input id="slide" type="range"
+    min="-45" max="90" step="10" value="90"
+      />
+      (-45,90)
+</div><br/>
+
+<div id="slider21">
+    LL5 <input id="slide" type="range"
+    min="-45" max="90" step="10" value="90"
+      />
+      (-45,90)
+</div><br/>
+<div id="slider22">
+    LL6 <input id="slide" type="range"
+    min="-45" max="90" step="10" value="90"
+      />
+      (-45,90)
+</div><br/>
+<div id="slider23">
+    LL7 <input id="slide" type="range"
+    min="-45" max="90" step="10" value="90"
+    />
+    (-45,90)
+</div><br/>
+<div id="slider24">
+    LL8 <input id="slide" type="range"
+    min="-45" max="90" step="10" value="90"
+    />
+    (-45,90)
+</div><br/>
+</div>
+
+</div>
+<div class="buttons">
+  <div id = saveloadbuttons>
+     <p>Upload: <input type="file" id = "upload" ></input> </p> 
+     
+     <input type="text" id="filename"><button id="download" type="button" onclick="download()">Download</button>
+  </div>
+</div>
+
+<div class="buttons_keyframes">
+  <div id="keyframebutton">
+    <button onclick="saveKeyframe()">Set Keyframe</button>
+    <button onclick="startAnimation()">Animate</button>
+    <button onclick="stopAnimation()">Stop Animation</button><br>
+    <label><input type='checkbox' checked = 'true' onclick='enableDisableLooping(this);'>Loop Animation</label><br>
+    Animation speed: <input id="slideranimspeed"  type="range" min="1" max="10" step="0.1" value="0.5"/>
+  </div>
+</div>
+
+<script type="text/javascript" src="../Common/webgl-utils.js"></script>
+<script type="text/javascript" src="../Common/InitShaders.js"></script>
+<script type="text/javascript" src="../Common/MV.js"></script>
+<script type="text/javascript" src="octopus.js"></script>
+</html>
